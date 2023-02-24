@@ -1,4 +1,5 @@
-import Header from "@/components/header";
+import Card from "@/components/card";
+import Items from "@/data/items";
 import Head from "next/head";
 
 export default function Home() {
@@ -11,8 +12,37 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header />
-        asdfasdf
+        <div
+          className={
+            "relative mb-[50px] mt-[50px] flex justify-center items-center"
+          }
+        >
+          <input
+            type={"text"}
+            className={
+              "h-[60px] w-[700px] rounded-[10px] border-2 border-[#e7c128] pl-[20px] pr-[50px] text-[20px] outline-0"
+            }
+            placeholder="..."
+          />
+        </div>
+        <div
+          className={
+            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
+          }
+        >
+          {/* <Card title="text1" price={200} />
+          <Card title="text1" price={300} />
+          <Card title="text1" price={400} />
+          <Card title="text1" price={500} /> */}
+          {Array.isArray(Items) &&
+            Items.map((item: any) => (
+              <Card
+                title={item.title}
+                price={item.price}
+                imgSrc={item.imgSrc}
+              />
+            ))}
+        </div>
       </main>
     </>
   );

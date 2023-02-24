@@ -1,14 +1,14 @@
 const Header = function () {
   return (
-    <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px] md:px-[20px]">
-      <p className="cursor-pointer text-[32px] text-white md:text-[20px]">
+    <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">
+      <p className="cursor-pointer text-[26px] text-white">
         Simple Shop System
       </p>
       <div className={"flex items-center gap-[40px]"}>
         {" "}
-        <p className="flex cursor-pointer text-[32px] text-white">Login</p>
+        <p className="flex cursor-pointer text-[26px] text-white">Login</p>
         <div className={"relative"}>
-          <p className="cursor-pointer text-[32px] text-white">Cart</p>
+          <p className="cursor-pointer text-[26px] text-white">Cart</p>
           <div
             className={
               "absolute top-0 left-[-15px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[15px] text-white"
