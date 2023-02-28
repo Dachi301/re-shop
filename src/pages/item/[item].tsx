@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import Items from "@/data/items";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,14 +8,22 @@ export default function ItemPage() {
 
   const { item } = router.query;
 
-  const data = Items.filter((elem: any) => elem.id === Number(item));
+  const data = Array.isArray(Items)
+    ? Items.filter((elem: any) => elem.id === Number(item))
+    : "";
 
   const [count, setCount] = useState(1);
   const [itemPrice, setItemPrice] = useState(data[0]?.price);
-  const [itemObject, setItemObject] = useState({});
-
-  // Disable button after adding item in the cart
   const [isDisabled, setIsDisabled] = useState(false);
+  const [itemObject, setItemObject] = useState({});
+  // console.log(Number(item));
+
+  // console.log(data);
+
+  // console.log(Items.find((item: any) => item.id == Number(item)));
+
+  // console.log(data);
+  // console.log(data[0]?.price);
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -31,27 +40,27 @@ export default function ItemPage() {
     }
   };
 
-  const handleAddItem = () => {
-    let obj = {
-      id: data[0]?.id,
-      title: data[0]?.title,
-      items: count,
-      price: itemPrice === 0 ? data[0]?.price : itemPrice,
-      img: data[0]?.imgSrc,
-    };
-    setItemObject({
-      ...itemObject,
-      obj,
-    });
+  useEffect(() => {
+    console.log(itemPrice);
+  }, []);
 
-    console.log(obj);
+  // const handleIncrement$ = $(() => {
+  //   state.count += 1
+  //   state.itemPrice += item[0].price
+  // })
+
+  // const handleDecrement$ = $(() => {
+  //   state.count === 1 ? (state.count = 1) : state.count--
+  //   if (state.itemPrice === item[0].price) {
+  //     state.itemPrice = item[0].price
+  //   } else {
+  //     state.itemPrice -= item[0].price
+  //   }
+  // })
+  const handleClick = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    router.push("/");
   };
-  // console.log(itemPrice);
-
-  if (data) {
-    console.log(data + " " + "---------");
-  }
-
   return (
     <div>
       <div className={"px-[30px] mt-[50px]"}>
@@ -89,7 +98,7 @@ export default function ItemPage() {
                     className={
                       "mt-[20px] font-bold flex translate-y-0 justify-start rounded-[10px] bg-[#e7c128] py-[20px] px-[20px] text-[20px] transition-all active:translate-y-1"
                     }
-                    onClick={handleAddItem}
+                    onClick={handleClick}
                   >
                     დამატება კალათაში
                   </button>
