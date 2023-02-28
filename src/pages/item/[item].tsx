@@ -8,69 +8,46 @@ export default function ItemPage() {
 
   const { item } = router.query;
 
-  const data = Array.isArray(Items)
-    ? Items.filter((elem: any) => elem.id === Number(item))
-    : "";
+  const data = Items.find((elem: any) => elem.id === Number(item));
 
   const [count, setCount] = useState(1);
-  const [itemPrice, setItemPrice] = useState(data[0]?.price);
+  const [itemPrice, setItemPrice] = useState(data?.price);
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemObject, setItemObject] = useState({});
-  // console.log(Number(item));
 
-  // console.log(data);
-
-  // console.log(Items.find((item: any) => item.id == Number(item)));
-
-  // console.log(data);
-  // console.log(data[0]?.price);
+  useEffect(() => {
+    if (itemPrice === undefined) {
+      setItemPrice(data?.price);
+    }
+  });
 
   const handleIncrement = () => {
     setCount(count + 1);
-    setItemPrice(itemPrice + data[0]?.price);
+    setItemPrice(itemPrice + data?.price);
   };
 
   const handleDecrement = () => {
     count === 1 ? setCount(1) : setCount(count - 1);
 
-    if (itemPrice === data[0]?.price) {
-      setItemPrice(data[0]?.price);
+    if (itemPrice === data?.price) {
+      setItemPrice(data?.price);
     } else {
-      setItemPrice(itemPrice - data[0]?.price);
+      setItemPrice(itemPrice - data?.price);
     }
   };
 
-  useEffect(() => {
-    console.log(itemPrice);
-  }, []);
-
-  // const handleIncrement$ = $(() => {
-  //   state.count += 1
-  //   state.itemPrice += item[0].price
-  // })
-
-  // const handleDecrement$ = $(() => {
-  //   state.count === 1 ? (state.count = 1) : state.count--
-  //   if (state.itemPrice === item[0].price) {
-  //     state.itemPrice = item[0].price
-  //   } else {
-  //     state.itemPrice -= item[0].price
-  //   }
-  // })
   const handleClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     router.push("/");
   };
+
   return (
     <div>
       <div className={"px-[30px] mt-[50px]"}>
         <div className={"flex gap-[50px]"}>
-          <img
-            src={`${data[0]?.imgSrc}`}
-            className={"h-[500px] object-cover"}
-          />
+          <img src={`${data?.imgSrc}`} className={"h-[500px] object-cover"} />
           <div className={"flex flex-col"}>
-            <h1 className={"text-[7em]"}>{data[0]?.title}</h1>
+            <h1 className={"text-[7em]"}>{data?.title}</h1>
             <div className={"pl-[10px]"}>
               <div className={"flex flex-col gap-[15px]"}>
                 <p className={"text-[22px] font-bold"}>ფასი: {itemPrice} ₾</p>
