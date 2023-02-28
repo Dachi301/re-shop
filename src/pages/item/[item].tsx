@@ -7,55 +7,50 @@ export default function ItemPage() {
 
   const { item } = router.query;
 
-  const data = Array.isArray(Items)
-    ? Items.filter((elem: any) => elem.id === Number(item))
-    : "";
+  const data = Items.filter((elem: any) => elem.id === Number(item));
 
   const [count, setCount] = useState(1);
   const [itemPrice, setItemPrice] = useState(data[0]?.price);
-  const [isDisabled, setIsDisabled] = useState(false);
   const [itemObject, setItemObject] = useState({});
-  // console.log(Number(item));
 
-  // console.log(data);
-
-  // console.log(Items.find((item: any) => item.id == Number(item)));
-
-  // console.log(data);
-  // console.log(data[0]?.price);
+  // Disable button after adding item in the cart
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleIncrement = () => {
     setCount(count + 1);
-    setItemPrice(itemPrice + data[0].price);
+    setItemPrice(itemPrice + data[0]?.price);
   };
 
   const handleDecrement = () => {
     count === 1 ? setCount(1) : setCount(count - 1);
 
-    if (itemPrice === data[0].price) {
-      setItemPrice(data[0].price);
+    if (itemPrice === data[0]?.price) {
+      setItemPrice(data[0]?.price);
     } else {
-      setItemPrice(itemPrice - data[0].price);
+      setItemPrice(itemPrice - data[0]?.price);
     }
   };
 
-  useEffect(() => {
-    console.log(itemPrice);
-  }, []);
+  const handleAddItem = () => {
+    let obj = {
+      id: data[0]?.id,
+      title: data[0]?.title,
+      items: count,
+      price: itemPrice === 0 ? data[0]?.price : itemPrice,
+      img: data[0]?.imgSrc,
+    };
+    setItemObject({
+      ...itemObject,
+      obj,
+    });
 
-  // const handleIncrement$ = $(() => {
-  //   state.count += 1
-  //   state.itemPrice += item[0].price
-  // })
+    console.log(obj);
+  };
+  // console.log(itemPrice);
 
-  // const handleDecrement$ = $(() => {
-  //   state.count === 1 ? (state.count = 1) : state.count--
-  //   if (state.itemPrice === item[0].price) {
-  //     state.itemPrice = item[0].price
-  //   } else {
-  //     state.itemPrice -= item[0].price
-  //   }
-  // })
+  if (data) {
+    console.log(data + " " + "---------");
+  }
 
   return (
     <div>
@@ -69,9 +64,7 @@ export default function ItemPage() {
             <h1 className={"text-[7em]"}>{data[0]?.title}</h1>
             <div className={"pl-[10px]"}>
               <div className={"flex flex-col gap-[15px]"}>
-                <p className={"text-[22px] font-bold"}>
-                  ფასი: {data[0]?.price} ₾
-                </p>
+                <p className={"text-[22px] font-bold"}>ფასი: {itemPrice} ₾</p>
                 <div className={"flex items-center gap-[20px]"}>
                   <button
                     className={
@@ -96,6 +89,7 @@ export default function ItemPage() {
                     className={
                       "mt-[20px] font-bold flex translate-y-0 justify-start rounded-[10px] bg-[#e7c128] py-[20px] px-[20px] text-[20px] transition-all active:translate-y-1"
                     }
+                    onClick={handleAddItem}
                   >
                     დამატება კალათაში
                   </button>

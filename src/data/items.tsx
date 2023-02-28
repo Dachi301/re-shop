@@ -1,11 +1,4 @@
-interface CardProps {
-  id: number;
-  title: string;
-  imgSrc: string;
-  price: number;
-}
-
-const Items: CardProps = [
+const Items = [
   {
     id: 1,
     title: "PS5",

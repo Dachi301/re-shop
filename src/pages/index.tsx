@@ -1,5 +1,6 @@
 import Card from "@/components/card";
 import Items from "@/data/items";
+
 import Head from "next/head";
 
 export default function Home() {
