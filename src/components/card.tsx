@@ -1,13 +1,15 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 interface PropsTypes {
   title: string;
   price: number;
   imgSrc: string;
+  id: number;
 }
 
-export default function Card({ title, price, imgSrc }: PropsTypes) {
+export default function Card({ title, price, imgSrc, id }: PropsTypes) {
   return (
     <div
       className={
@@ -19,19 +21,21 @@ export default function Card({ title, price, imgSrc }: PropsTypes) {
         className={"aspect-[3/3] w-full h-full object-cover"}
         alt="Card Image"
         width={500}
-        height={100}
+        height={400}
       ></Image>
       <h1 className={"text-center font-bold text-[18px]"}>{title}</h1>
       <p className={"font text-[18px] font-bold"}>ფასი: {price}₾</p>
-      <div className={"flex items-center justify-center"}>
-        <button
-          className={
-            "w-[30%] font-bold rounded-[20px] bg-[#e7c128] py-[5px] text-[2vh] text-black transition-[0.3s] hover:bg-[#000] hover:text-[#e7c128]"
-          }
-        >
-          View
-        </button>
-      </div>
+      <Link href={`/item/${id}`}>
+        <div className={"flex items-center justify-center"}>
+          <button
+            className={
+              "w-[30%] flex items-center justify-center font-bold rounded-[20px] bg-[#e7c128] py-[5px] text-[2vh] text-black transition-[0.3s] hover:bg-[#000] hover:text-[#e7c128]"
+            }
+          >
+            View
+          </button>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -1,16 +1,31 @@
+"use client";
+
 import Link from "next/link";
 
+import { useRouter } from "next/router";
+import { useNavigate } from "react-router-dom";
+
 const Header = function () {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/");
+  };
+
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">
-      <p className="cursor-pointer text-[26px] text-white">
-        Simple Shop System
-      </p>
+      <Link href={"/"} passHref>
+        <a href={"/"} className="cursor-pointer text-[26px] text-white">
+          Simple Shop System
+        </a>
+      </Link>
       <div className={"flex items-center gap-[40px]"}>
         {" "}
         <p className="flex cursor-pointer text-[26px] text-white">Login</p>
         <div className={"relative"}>
-          <p className="cursor-pointer text-[26px] text-white">Cart</p>
+          <Link href={"/"}>
+            <p className="cursor-pointer text-[26px] text-white">Cart</p>
+          </Link>
           <div
             className={
               "absolute top-0 left-[-15px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[15px] text-white"

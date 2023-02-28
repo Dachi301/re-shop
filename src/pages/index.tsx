@@ -30,10 +30,6 @@ export default function Home() {
             "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
           }
         >
-          {/* <Card title="text1" price={200} />
-          <Card title="text1" price={300} />
-          <Card title="text1" price={400} />
-          <Card title="text1" price={500} /> */}
           {Array.isArray(Items) &&
             Items.map((item: any, id: any) => (
               <Card
@@ -41,6 +37,7 @@ export default function Home() {
                 price={item.price}
                 imgSrc={item.imgSrc}
                 key={id}
+                id={item.id}
               />
             ))}
         </div>
