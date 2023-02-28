@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = function () {
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">

@@ -14,11 +14,6 @@ export default function Card({ title, price, imgSrc }: PropsTypes) {
         "flex w-full flex-col gap-[10px] rounded-[10px] border border-[black] p-[10px]"
       }
     >
-      {/* <img
-        className={"aspect-[3/3] h-full object-cover"}
-        src="https://w0.peakpx.com/wallpaper/203/1010/HD-wallpaper-forest-flora-forest-vithurshan-dark-europe-faded-green-leaf-mood-moody-sri-lanka-vithurshan-jpeg-wood.jpg"
-      /> */}
-
       <Image
         src={imgSrc}
         className={"aspect-[3/3] w-full h-full object-cover"}
@@ -27,7 +22,7 @@ export default function Card({ title, price, imgSrc }: PropsTypes) {
         height={100}
       ></Image>
       <h1 className={"text-center font-bold text-[18px]"}>{title}</h1>
-      <p className={"font text-[18px] font-bold"}>ფასი: {price}</p>
+      <p className={"font text-[18px] font-bold"}>ფასი: {price}₾</p>
       <div className={"flex items-center justify-center"}>
         <button
           className={

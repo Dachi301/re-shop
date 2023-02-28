@@ -35,11 +35,12 @@ export default function Home() {
           <Card title="text1" price={400} />
           <Card title="text1" price={500} /> */}
           {Array.isArray(Items) &&
-            Items.map((item: any) => (
+            Items.map((item: any, id: any) => (
               <Card
                 title={item.title}
                 price={item.price}
                 imgSrc={item.imgSrc}
+                key={id}
               />
             ))}
         </div>
