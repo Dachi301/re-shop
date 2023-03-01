@@ -1,7 +1,8 @@
 import Header from "@/components/header";
+import CartContext from "@/context/cart";
 import Items from "@/data/items";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function ItemPage() {
   const router = useRouter();
@@ -14,6 +15,8 @@ export default function ItemPage() {
   const [itemPrice, setItemPrice] = useState(data?.price);
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemObject, setItemObject] = useState({});
+
+  const cart = useContext(CartContext);
 
   useEffect(() => {
     if (itemPrice === undefined) {
@@ -36,10 +39,34 @@ export default function ItemPage() {
     }
   };
 
-  const handleClick = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    router.push("/");
+  const handleDisableButton = () => {
+    cart.forEach((element: any) => {
+      if (element.id === data?.id) {
+        setIsDisabled(true);
+      }
+    });
   };
+
+  const handleAddItemToCart = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const itemToPush = {
+      id: data?.id,
+      itemTitle: data?.title,
+      price: itemPrice,
+      itemQuantity: count,
+      imgSrc: data?.imgSrc,
+    };
+
+    cart.push(itemToPush);
+    handleDisableButton();
+
+    console.log(itemToPush);
+  };
+
+  useEffect(() => {
+    handleDisableButton();
+  }, []);
 
   return (
     <div>
@@ -50,32 +77,37 @@ export default function ItemPage() {
             <h1 className={"text-[7em]"}>{data?.title}</h1>
             <div className={"pl-[10px]"}>
               <div className={"flex flex-col gap-[15px]"}>
-                <p className={"text-[22px] font-bold"}>ფასი: {itemPrice} ₾</p>
+                <p className={"text-[22px] font-bold"}>
+                  ფასი: {isDisabled ? data?.price : itemPrice} ₾
+                </p>
                 <div className={"flex items-center gap-[20px]"}>
                   <button
-                    className={
-                      "rounded-[10px] bg-[gray] py-[10px] px-[20px] text-[25px]"
-                    }
+                    className={`rounded-[10px] bg-[gray] py-[10px] px-[20px] text-[25px] ${
+                      isDisabled && "opacity-[0.6] active:translate-y-0"
+                    }`}
                     onClick={handleIncrement}
+                    disabled={isDisabled ? true : false}
                   >
                     +
                   </button>
-                  <p>{count}</p>
+                  <p>{isDisabled ? 1 : count}</p>
                   <button
-                    className={
-                      "rounded-[10px] bg-[gray] py-[10px] px-[20px] text-[25px]"
-                    }
+                    className={`rounded-[10px] bg-[gray] py-[10px] px-[20px] text-[25px] ${
+                      isDisabled && "opacity-[0.6] active:translate-y-0"
+                    }`}
                     onClick={handleDecrement}
+                    disabled={isDisabled ? true : false}
                   >
                     -
                   </button>
                 </div>
                 <div>
                   <button
-                    className={
-                      "mt-[20px] font-bold flex translate-y-0 justify-start rounded-[10px] bg-[#e7c128] py-[20px] px-[20px] text-[20px] transition-all active:translate-y-1"
-                    }
-                    onClick={handleClick}
+                    className={`mt-[20px] font-bold flex translate-y-0 justify-start rounded-[10px] bg-[#e7c128] py-[20px] px-[20px] text-[20px] transition-all active:translate-y-1 ${
+                      isDisabled && "opacity-[0.6] active:translate-y-0"
+                    }`}
+                    onClick={handleAddItemToCart}
+                    disabled={isDisabled}
                   >
                     დამატება კალათაში
                   </button>
