@@ -7,9 +7,15 @@ import Head from "next/head";
 export default function Home() {
     const [searchValue, setSearchValue] = useState("");
 
-    let products = Items.filter((items) =>
-        items.title.toLowerCase().includes(searchValue.trim().toLowerCase())
-    );
+    const filterProducts = () => {
+        if (searchValue) {
+            let products = Items.filter((items) =>
+                items.title.toLowerCase().includes(searchValue.trim().toLowerCase())
+            );
+            return products;
+        }
+        return Items;
+    };
 
     return (
         <>
@@ -30,26 +36,12 @@ export default function Home() {
                         onInput={(e) => setSearchValue(e.currentTarget.value)}
                     />
                 </div>
-                {searchValue.length === 0 ? (
-                    <div
-                        className={
-                            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
-                        }
-                    >
-                        {Array.isArray(Items) &&
-                            Items.map((item: any, id: any) => (
-                                <Card
-                                    title={item.title}
-                                    price={item.price}
-                                    imgSrc={item.imgSrc}
-                                    key={id}
-                                    id={item.id}
-                                />
-                            ))}
-                    </div>
-                ) : (
-                    products.length !== 0 &&
-                    products.map((product) => (
+                <div
+                    className={
+                        "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
+                    }
+                >
+                    {filterProducts().map((product) => (
                         <Card
                             key={product.id}
                             title={product?.title}
@@ -57,8 +49,8 @@ export default function Home() {
                             imgSrc={product?.imgSrc}
                             id={product?.id}
                         />
-                    ))
-                )}
+                    ))}
+                </div>
             </main>
         </>
     );
