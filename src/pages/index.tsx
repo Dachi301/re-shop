@@ -1,9 +1,16 @@
+import { useState } from "react";
 import Card from "@/components/card";
 import Items from "@/data/items";
 
 import Head from "next/head";
 
 export default function Home() {
+    const [searchValue, setSearchValue] = useState("");
+
+    let products = Items.filter((items) =>
+        items.title.toLowerCase().includes(searchValue.trim().toLowerCase())
+    );
+
     return (
         <>
             <Head>
@@ -20,24 +27,38 @@ export default function Home() {
                             "h-[60px] w-[700px] rounded-[10px] border-2 border-[#e7c128] pl-[20px] pr-[50px] text-[20px] outline-0"
                         }
                         placeholder="..."
+                        onInput={(e) => setSearchValue(e.currentTarget.value)}
                     />
                 </div>
-                <div
-                    className={
-                        "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
-                    }
-                >
-                    {Array.isArray(Items) &&
-                        Items.map((item: any, id: any) => (
-                            <Card
-                                title={item.title}
-                                price={item.price}
-                                imgSrc={item.imgSrc}
-                                key={id}
-                                id={item.id}
-                            />
-                        ))}
-                </div>
+                {searchValue.length === 0 ? (
+                    <div
+                        className={
+                            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
+                        }
+                    >
+                        {Array.isArray(Items) &&
+                            Items.map((item: any, id: any) => (
+                                <Card
+                                    title={item.title}
+                                    price={item.price}
+                                    imgSrc={item.imgSrc}
+                                    key={id}
+                                    id={item.id}
+                                />
+                            ))}
+                    </div>
+                ) : (
+                    products.length !== 0 &&
+                    products.map((product) => (
+                        <Card
+                            key={product.id}
+                            title={product?.title}
+                            price={product?.price}
+                            imgSrc={product?.imgSrc}
+                            id={product?.id}
+                        />
+                    ))
+                )}
             </main>
         </>
     );
