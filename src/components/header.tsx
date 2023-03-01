@@ -29,7 +29,7 @@ const Header = function (_props: any) {
       <div className={"flex items-center gap-[40px]"}>
         <p className="flex cursor-pointer text-[26px] text-white">Login</p>
         <div className={"relative"}>
-          <Link href={"/"}>
+          <Link href={"/cart"}>
             <p className="cursor-pointer text-[26px] text-white">Cart</p>
           </Link>
           <div
