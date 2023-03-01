@@ -8,7 +8,7 @@ export default function Home() {
     const [searchValue, setSearchValue] = useState("");
 
     const filterProducts = () => {
-        if (searchValue) {
+        if (searchValue && Items.length !== 0) {
             let products = Items.filter((items) =>
                 items.title.toLowerCase().includes(searchValue.trim().toLowerCase())
             );
@@ -41,15 +41,19 @@ export default function Home() {
                         "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
                     }
                 >
-                    {filterProducts().map((product) => (
-                        <Card
-                            key={product.id}
-                            title={product?.title}
-                            price={product?.price}
-                            imgSrc={product?.imgSrc}
-                            id={product?.id}
-                        />
-                    ))}
+                    {filterProducts().length === 0 ? (
+                        <h1>there is no products</h1>
+                    ) : (
+                        filterProducts().map((product) => (
+                            <Card
+                                key={product.id}
+                                title={product?.title}
+                                price={product?.price}
+                                imgSrc={product?.imgSrc}
+                                id={product?.id}
+                            />
+                        ))
+                    )}
                 </div>
             </main>
         </>
