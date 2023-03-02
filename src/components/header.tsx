@@ -4,8 +4,9 @@ import CartContext, { CartArr } from "@/context/cart";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthModal from "./modals/auth-modal";
 
 const Header = function (_props: any) {
   const router = useRouter();
@@ -17,6 +18,8 @@ const Header = function (_props: any) {
   };
 
   const { cart, setCart } = useContext(CartArr);
+
+  const [modalState, setModalState] = useState("closed");
 
   // const cart = useContext(CartContext);
 
@@ -31,7 +34,12 @@ const Header = function (_props: any) {
         Simple Shop System
       </button>
       <div className={"flex items-center gap-[40px]"}>
-        <p className="flex cursor-pointer text-[26px] text-white">Login</p>
+        <p
+          onClick={() => setModalState("open")}
+          className="flex cursor-pointer text-[26px] text-white"
+        >
+          Login
+        </p>
         <div className={"relative"}>
           <Link href={"/cart"}>
             <p className="cursor-pointer text-[26px] text-white">Cart</p>
@@ -85,6 +93,69 @@ const Header = function (_props: any) {
           </svg>
         </div> */}
         {/* Responsive !!!!!!!!!!!!!!!*/}
+        <AuthModal modalState={modalState}>
+          <form
+            className="relative w-[700px] rounded-[10px] bg-white p-[20px]"
+            onClick={(e: { preventDefault: () => void }) => e.preventDefault()}
+          >
+            <div className="flex flex-col gap-[20px]">
+              <h1 className="text-center text-[26px] font-bold">ავტორიზაცია</h1>
+              <div className="flex flex-col gap-[40px]">
+                <div>
+                  <p className="text-[22px]">საფულე</p>
+                  <input
+                    type="text"
+                    className="w-full rounded-[10px] border-0 bg-[#F3F3F4] py-[15px] px-[20px] text-[18px] outline-0"
+                    placeholder="..."
+                  />
+                </div>
+                <div>
+                  <button className="w-full translate-y-0 rounded-[10px] bg-[#e7c128] py-[12px] px-[20px] text-[20px] text-[black] outline-0 transition-all hover:bg-black hover:text-[#e7c128] active:translate-y-1">
+                    შესვლა
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              onClick={() => {
+                setModalState("closed");
+              }}
+              className="absolute top-[20px] right-[20px] cursor-pointer"
+            >
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <mask
+                  id="mask0_112_7508"
+                  maskUnits="userSpaceOnUse"
+                  x="0"
+                  y="0"
+                  width="25"
+                  height="25"
+                >
+                  <rect
+                    x="0.354187"
+                    y="0.438477"
+                    width="24"
+                    height="24"
+                    fill="#D9D9D9"
+                  />
+                </mask>
+                <g mask="url(#mask0_112_7508)">
+                  <path
+                    d="M6.75419 19.4385L5.35419 18.0385L10.9542 12.4385L5.35419 6.83848L6.75419 5.43848L12.3542 11.0385L17.9542 5.43848L19.3542 6.83848L13.7542 12.4385L19.3542 18.0385L17.9542 19.4385L12.3542 13.8385L6.75419 19.4385Z"
+                    fill="#16110D"
+                  />
+                </g>
+              </svg>
+            </div>
+          </form>
+        </AuthModal>
       </div>
     </header>
   );
