@@ -44,6 +44,7 @@ const Header = function (_props: any) {
             className={
               "absolute top-0 left-[-15px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[15px] text-white 2xl:hidden"
             }
+            onClick={() => router.push("/cart")}
           >
             {cart.length}
           </div>
@@ -72,6 +73,7 @@ const Header = function (_props: any) {
               className={
                 "absolute top-[-10px] left-[-15px] hidden h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[14px] text-white 2xl:flex"
               }
+              onClick={() => router.push("/cart")}
             >
               {cart.length}
             </div>
