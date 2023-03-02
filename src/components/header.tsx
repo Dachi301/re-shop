@@ -1,11 +1,10 @@
 "use client";
 
-import CartContext, { CartArr } from "@/context/cart";
+import { CartArr } from "@/context/cart";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import AuthModal from "./modals/auth-modal";
 
 const Header = function (_props: any) {
@@ -14,16 +13,11 @@ const Header = function (_props: any) {
   const handleClick = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     router.push("/");
-    // console.log("asdsfdsfs");
   };
 
   const { cart, setCart } = useContext(CartArr);
 
   const [modalState, setModalState] = useState("closed");
-
-  // const cart = useContext(CartContext);
-
-  // console.log(cart.length);
 
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">

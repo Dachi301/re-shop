@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import { CartArr } from "@/context/cart";
 import Items from "@/data/items";
 import { useRouter } from "next/router";

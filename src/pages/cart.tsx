@@ -1,24 +1,8 @@
-import CartContext, { CartArr } from "@/context/cart";
+import { CartArr } from "@/context/cart";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
-type Props = {};
-
-/**
-   * 
-   * 
-  const handleDelete$ = $((id: number) => {
-    const element = state.cart.filter((item: any) => item.id === id)
-    state.cartLength -= 1
-    newState.sum -= element[0].price
-    state.cart = state.cart.filter((item: any) => {
-      return item.id !== id
-    })
-  })
-
-   */
-
-export default function ({}: Props) {
+export default function ({}) {
   const router = useRouter();
 
   const [sum, setSum] = useState(0);
