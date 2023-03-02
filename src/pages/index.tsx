@@ -34,7 +34,7 @@ export default function Home() {
           <input
             type={"text"}
             className={
-              "h-[60px] w-[700px] rounded-[10px] border-2 border-[#e7c128] pl-[20px] pr-[50px] text-[20px] outline-0"
+              "h-[60px] w-[700px] rounded-[10px] border-2 border-[#e7c128] pl-[20px] pr-[50px] text-[20px] outline-0 xl:w-[93vw] lg:w-[87vw]"
             }
             placeholder="..."
             onInput={(e) => setSearchValue(e.currentTarget.value)}
@@ -42,7 +42,7 @@ export default function Home() {
         </div>
         <div
           className={
-            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px]"
+            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px] 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1"
           }
         >
           {filterProducts().length === 0 ? (

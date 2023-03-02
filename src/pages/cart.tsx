@@ -1,4 +1,5 @@
 import CartContext, { CartArr } from "@/context/cart";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 
 type Props = {};
@@ -18,6 +19,8 @@ type Props = {};
    */
 
 export default function ({}: Props) {
+  const router = useRouter();
+
   const [sum, setSum] = useState(0);
 
   const { cart, setCart } = useContext(CartArr);
@@ -53,7 +56,7 @@ export default function ({}: Props) {
         <div className={"flex flex-col gap-[80px]"}>
           {cart.length === 0 ? (
             <div>
-              <h1 className={"w-full text-center text-[34px]"}>
+              <h1 className={"w-full text-center text-[34px] 2xl:text-[5vw]"}>
                 კალათაში არ გვაქვს ნივთები :(
               </h1>
             </div>
@@ -62,7 +65,7 @@ export default function ({}: Props) {
               <div className={"flex gap-[80px]"} key={item.id}>
                 <div
                   className={
-                    "flex w-[600px] flex-col gap-[20px] break-all	 border border-black p-[10px]"
+                    "flex w-[600px] flex-col gap-[20px] break-all	 border border-black p-[10px] xl:w-[90vw]"
                   }
                 >
                   <img
@@ -70,6 +73,7 @@ export default function ({}: Props) {
                     className={
                       "aspect-[3/2] w-full cursor-pointer object-contain"
                     }
+                    onClick={() => router.push(`/item/${item.id}`)}
                   />
 
                   <div className={"flex flex-col justify-around"}>
@@ -80,7 +84,7 @@ export default function ({}: Props) {
                       <p className={"text-[20px]"}>
                         ცალის ფასი: {item.price / item.itemQuantity}₾
                       </p>
-                      <p className={"text-[20px]"}>
+                      <p className={"text-[20px] font-bold"}>
                         საბოლოო ფასი: {item.price}₾
                       </p>
                       <p className={"text-[20px] text-green-600"}>
@@ -101,35 +105,23 @@ export default function ({}: Props) {
             ))
           )}
 
-          {/* Item to push */}
-
           {cart.length > 0 && (
             <div className={"mb-[50px] flex flex-col items-start gap-[20px]"}>
-              <h1 className={"text-[24px]"}>ნივთები: {cart.length} (ცალი)</h1>
-              <h1 className={"text-[24px]"}>საბოლოო ფასი: {sum}₾ (ჯამში)</h1>
-
-              {/* <p className={"text-[24px]"}>ჯამი: {newsum}₾</p> */}
+              <h1 className={"text-[24px] lg:text-[4.5vw]"}>
+                ნივთები: {cart.length} (ცალი)
+              </h1>
+              <h1 className={"text-[24px] font-bold lg:text-[4.5vw]"}>
+                საბოლოო ფასი: {sum}₾ (ჯამში)
+              </h1>
               <button
                 className={
-                  "w-full translate-y-0 rounded-[5px] bg-[#e7c128] px-[15px] py-[10px] text-[24px] transition-all active:translate-y-1 "
+                  "w-full lg:w-[90vw] translate-y-0 rounded-[5px] bg-[#e7c128] px-[15px] py-[10px] text-[24px] lg:text-[20px] transition-all active:translate-y-1 "
                 }
               >
                 შეძენა
               </button>
             </div>
           )}
-
-          {/* <div className={"mb-[50px] flex flex-col items-start gap-[20px]"}>
-            <h1 className={"text-[24px]"}>ნივთები: 2 (ცალი)</h1>
-            <p className={"text-[24px]"}>ჯამი: 123₾</p>
-            <button
-              className={
-                "w-full translate-y-0 rounded-[5px] bg-[#e7c128] px-[15px] py-[10px] text-[24px] transition-all active:translate-y-1 "
-              }
-            >
-              შეძენა
-            </button>
-          </div> */}
         </div>
       </div>
     </div>

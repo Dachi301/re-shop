@@ -28,7 +28,7 @@ const Header = function (_props: any) {
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">
       <button
-        className="cursor-pointer text-[26px] text-white"
+        className="cursor-pointer text-[26px] text-white lg:text-[5vw]"
         onClick={handleClick}
       >
         Simple Shop System
@@ -36,32 +36,37 @@ const Header = function (_props: any) {
       <div className={"flex items-center gap-[40px]"}>
         <p
           onClick={() => setModalState("open")}
-          className="flex cursor-pointer text-[26px] text-white"
+          className="flex cursor-pointer text-[26px] text-white 2xl:hidden"
         >
           Login
         </p>
         <div className={"relative"}>
           <Link href={"/cart"}>
-            <p className="cursor-pointer text-[26px] text-white">Cart</p>
+            <p className="flex cursor-pointer text-[26px] text-white 2xl:hidden">
+              Cart
+            </p>
           </Link>
           <div
             className={
-              "absolute top-0 left-[-15px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[15px] text-white"
+              "absolute top-0 left-[-15px] flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[15px] text-white 2xl:hidden"
             }
           >
             {cart.length}
           </div>
         </div>
         {/* Responsive !!!!!!!!!!!!!!!*/}
-        {/* <div className={"hidden gap-[20px] md:flex"}>
-          <div className={"relative"}>
+        <div className={"hidden gap-[20px] 2xl:flex"}>
+          <div
+            className={"relative cursor-pointer"}
+            onClick={() => router.push("/cart")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="white"
-              className="hidden h-6 w-6 md:flex"
+              className="hidden h-6 w-6 2xl:flex"
             >
               <path
                 strokeLinecap="round"
@@ -71,10 +76,10 @@ const Header = function (_props: any) {
             </svg>
             <div
               className={
-                "absolute top-[-10px] left-[-15px] hidden h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[14px] text-white md:flex"
+                "absolute top-[-10px] left-[-15px] hidden h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-[50%] bg-black text-[14px] text-white 2xl:flex"
               }
             >
-              0
+              {cart.length}
             </div>
           </div>
           <svg
@@ -83,7 +88,10 @@ const Header = function (_props: any) {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="white"
-            className="hidden h-6 w-6 md:flex"
+            className="hidden h-6 w-6 2xl:flex cursor-pointer"
+            onClick={() => {
+              setModalState("open");
+            }}
           >
             <path
               stroke-linecap="round"
@@ -91,11 +99,11 @@ const Header = function (_props: any) {
               d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
             />
           </svg>
-        </div> */}
+        </div>
         {/* Responsive !!!!!!!!!!!!!!!*/}
         <AuthModal modalState={modalState}>
           <form
-            className="relative w-[700px] rounded-[10px] bg-white p-[20px]"
+            className="relative w-[700px] rounded-[10px] bg-white p-[20px] 2xl:w-[90vw]"
             onClick={(e: { preventDefault: () => void }) => e.preventDefault()}
           >
             <div className="flex flex-col gap-[20px]">

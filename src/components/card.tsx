@@ -33,7 +33,7 @@ export default function Card({ title, price, imgSrc, id }: PropsTypes) {
         <div className={"flex items-center justify-center"}>
           <button
             className={
-              "w-[30%] flex items-center justify-center font-bold rounded-[20px] bg-[#e7c128] py-[5px] text-[2vh] text-black transition-[0.3s] hover:bg-[#000] hover:text-[#e7c128]"
+              "w-[30%] 2xl:w-[45%] flex items-center justify-center font-bold rounded-[20px] bg-[#e7c128] py-[5px] text-[2vh] text-black transition-[0.3s] hover:bg-[#000] hover:text-[#e7c128]"
             }
           >
             View

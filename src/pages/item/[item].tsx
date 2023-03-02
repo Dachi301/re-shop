@@ -64,10 +64,15 @@ export default function ItemPage() {
 
   return (
     <div>
-      <div className={"px-[30px] mt-[50px]"}>
-        <div className={"flex gap-[50px]"}>
-          <img src={`${data?.imgSrc}`} className={"h-[500px] object-cover"} />
-          <div className={"flex flex-col"}>
+      <div className={"px-[30px] mt-[50px] 2xl:px-[20px]"}>
+        <div className={"flex flex-row gap-[50px] 2xl:flex-col"}>
+          <img
+            src={`${data?.imgSrc}`}
+            className={
+              "h-[500px] object-cover 2xl:aspect-[3/2] 2xl:h-full 2xl:object-contain"
+            }
+          />
+          <div className={"flex flex-col mb-[50px]"}>
             <h1 className={"text-[7em]"}>{data?.title}</h1>
             <div className={"pl-[10px]"}>
               <div className={"flex flex-col gap-[15px]"}>
