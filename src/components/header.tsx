@@ -1,6 +1,6 @@
 "use client";
 
-import CartContext from "@/context/cart";
+import CartContext, { CartArr } from "@/context/cart";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
@@ -16,9 +16,11 @@ const Header = function (_props: any) {
     // console.log("asdsfdsfs");
   };
 
-  const cart = useContext(CartContext);
+  const { cart, setCart } = useContext(CartArr);
 
-  console.log(cart.length);
+  // const cart = useContext(CartContext);
+
+  // console.log(cart.length);
 
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">

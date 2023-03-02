@@ -1,5 +1,5 @@
 import Header from "@/components/header";
-import CartContext from "@/context/cart";
+import { CartArr } from "@/context/cart";
 import Items from "@/data/items";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -16,7 +16,7 @@ export default function ItemPage() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [itemObject, setItemObject] = useState({});
 
-  const cart = useContext(CartContext);
+  const { cart, setCart } = useContext(CartArr);
 
   useEffect(() => {
     if (itemPrice === undefined) {
@@ -58,10 +58,12 @@ export default function ItemPage() {
       imgSrc: data?.imgSrc,
     };
 
-    cart.push(itemToPush);
+    setCart((prevCart: any) => [...prevCart, itemToPush]);
+
     handleDisableButton();
 
     console.log(itemToPush);
+    console.log(cart);
   };
 
   useEffect(() => {
