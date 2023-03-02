@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface PropsTypes {
   title: string;
@@ -10,6 +11,8 @@ interface PropsTypes {
 }
 
 export default function Card({ title, price, imgSrc, id }: PropsTypes) {
+  const router = useRouter();
+
   return (
     <div
       className={
@@ -18,10 +21,11 @@ export default function Card({ title, price, imgSrc, id }: PropsTypes) {
     >
       <Image
         src={imgSrc}
-        className={"aspect-[3/3] w-full h-full object-cover"}
+        className={"aspect-[3/3] w-full h-full object-cover cursor-pointer"}
         alt="Card Image"
         width={500}
         height={400}
+        onClick={() => router.push(`/item/${id}`)}
       ></Image>
       <h1 className={"text-center font-bold text-[18px]"}>{title}</h1>
       <p className={"font text-[18px] font-bold"}>ფასი: {price}₾</p>

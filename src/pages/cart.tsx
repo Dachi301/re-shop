@@ -84,7 +84,7 @@ export default function ({}: Props) {
                         საბოლოო ფასი: {item.price}₾
                       </p>
                       <p className={"text-[20px] text-green-600"}>
-                        რაოდენობა: {item.items}x
+                        რაოდენობა: {item.itemQuantity}x
                       </p>
                     </div>
                     <button
