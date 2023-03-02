@@ -39,14 +39,6 @@ export default function ItemPage() {
     }
   };
 
-  const handleDisableButton = () => {
-    cart.forEach((element: any) => {
-      if (element.id === data?.id) {
-        setIsDisabled(true);
-      }
-    });
-  };
-
   const handleAddItemToCart = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -59,15 +51,15 @@ export default function ItemPage() {
     };
 
     setCart((prevCart: any) => [...prevCart, itemToPush]);
-
-    handleDisableButton();
-
-    console.log(itemToPush);
-    console.log(cart);
+    setIsDisabled(true);
   };
 
   useEffect(() => {
-    handleDisableButton();
+    cart.forEach((element: any) => {
+      if (element.id === data?.id) {
+        setIsDisabled(true);
+      }
+    });
   }, []);
 
   return (
