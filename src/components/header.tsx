@@ -4,7 +4,7 @@ import CartContext from "@/context/cart";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Header = function (_props: any) {
@@ -17,6 +17,8 @@ const Header = function (_props: any) {
   };
 
   const cart = useContext(CartContext);
+
+  console.log(cart.length);
 
   return (
     <header className="flex items-center justify-between bg-[#e7c128] px-[30px] py-[20px]">
