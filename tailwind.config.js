@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
+      "3xl": { max: "1500px" },
       "2xl": { max: "1200px" },
       // => @media (max-width: 1535px) { ... }
 
