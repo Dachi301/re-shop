@@ -19,7 +19,7 @@ export default function Profile() {
         </h1>
 
         <h1 className="text-[32px] font-bold break-all text-center mt-[20px] lg:text-[26px]">
-          ჩემი შენაძენები:
+          ჩემი შენაძენები: (Dummy Data)
         </h1>
         <div className="grid grid-cols-3 gap-x-[30px] gap-y-[30px] xl:grid-cols-2 lg:grid-cols-1">
           <Card
