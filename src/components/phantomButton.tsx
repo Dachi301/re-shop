@@ -20,7 +20,6 @@ const PhantomButton = () => {
   return (
     <div>
       <WalletMultiButtonNoSSR />
-      {/* <WalletDisconnectButton /> */}
     </div>
   );
 };
