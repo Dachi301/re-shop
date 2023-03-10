@@ -10,6 +10,7 @@ import {
   Transaction,
   SystemProgram,
 } from "@solana/web3.js";
+import ItemService from "@/services/itemService";
 
 export default function Cart({}) {
   const router = useRouter();
@@ -41,6 +42,14 @@ export default function Cart({}) {
   const [sum, setSum] = useState(0);
 
   const { cart, setCart } = useContext(CartArr);
+
+  const getItems = async () => {
+    await ItemService.getItems();
+  };
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   // Adding items in cart
 
