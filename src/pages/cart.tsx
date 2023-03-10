@@ -8,60 +8,39 @@ import {
   Connection,
   PublicKey,
   Transaction,
-  sendAndConfirmTransaction,
+  SystemProgram,
 } from "@solana/web3.js";
-import { Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 export default function Cart({}) {
   const router = useRouter();
 
-  // const { connection } = useConnection();
-  // const { publicKey, sendTransaction } = useWallet();
+  const { connection } = useConnection();
+  const { publicKey, sendTransaction } = useWallet();
 
   // Payments
+
+  const sendPayment = async (recipient: string, amount: number) => {
+    // const transaction = new Transaction().add(
+    //   SystemProgram.transfer({
+    //     fromPubkey: publicKey!,
+    //     toPubkey: new PublicKey(recipient),
+    //     lamports: amount,
+    //   })
+    // );
+
+    // const signature = await sendTransaction(transaction, connection);
+    console.log(`Transaction sent: ${recipient}, ${amount}`);
+  };
+
+  const handlePaymentClick = async () => {
+    const recipient = "ELWXFTJWoGv9YwmcTyDYno2DZntAR6XJdcMTb2jRHEy3";
+
+    await sendPayment(recipient, sum);
+  };
 
   const [sum, setSum] = useState(0);
 
   const { cart, setCart } = useContext(CartArr);
-
-  const handlePaymentClick = async () => {
-    // const recipient = "5dcR97YBYnxjszLbJoxobpcYDEo8cHt2sEqsn1Dko2v7";
-    // await sendPayment(recipient, sum);
-    // const connection = new Connection("https://api.mainnet-beta.solana.com");
-    // const tokenSenderPublicKey = new PublicKey(
-    //   "ELWXFTJWoGv9YwmcTyDYno2DZntAR6XJdcMTb2jRHEy3"
-    // );
-    // const senderTokenAccount = await connection.getParsedAccountInfo(
-    //   tokenSenderPublicKey
-    // );
-    // const senderTokenAccountData = senderTokenAccount.value.data;
-    // const senderTokenAccountOwner = senderTokenAccount.value.owner;
-    // const token = new Token(
-    //   connection,
-    //   TOKEN_PROGRAM_ID,
-    //   senderTokenAccountOwner,
-    //   null
-    // );
-    // const transaction = new Transaction().add(
-    //   Token.createTransferInstruction(
-    //     TOKEN_PROGRAM_ID,
-    //     tokenSenderPublicKey,
-    //     "5dcR97YBYnxjszLbJoxobpcYDEo8cHt2sEqsn1Dko2v7",
-    //     senderTokenAccountOwner,
-    //     [],
-    //     1
-    //   )
-    // );
-    // const { blockhash } = await connection.getRecentBlockhash();
-    // transaction.recentBlockhash = blockhash;
-    // const signedTransaction = await connection.signTransaction(transaction, []);
-    // const txid = await connection.sendRawTransaction(
-    //   signedTransaction.serialize()
-    // );
-    // await connection.confirmTransaction(txid, "processed");
-    // // WE MUST DISCUSS ABOUT THAT WITH GIO CTO NOT GIO SOLANA
-    // transaction.feePayer = FEE_PAYER_PUBLIC_KEY;
-  };
 
   // Adding items in cart
 
