@@ -1,11 +1,10 @@
 import Api from "./api";
 
 const ItemService = {
-  getItems: async (params?: object) => {
-    const apiData = await Api.sendRequest("/posts", params);
-
-    console.log(apiData.message);
-  },
+    getItems: async () => {
+        const apiData = await Api.sendRequest("/posts");
+        return apiData;
+    },
 };
 
 export default ItemService;

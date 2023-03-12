@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 
 export default function ItemPage() {
     const router = useRouter();
-
     const { item } = router.query;
 
     const data = Items.find((elem: any) => elem.id === Number(item));
@@ -46,7 +45,7 @@ export default function ItemPage() {
             itemTitle: data?.title,
             price: itemPrice,
             itemQuantity: count,
-            imgSrc: data?.imgSrc,
+            imgSrc: data?.imgSrc
         };
 
         setCart((prevCart: any) => [...prevCart, itemToPush]);
@@ -66,6 +65,7 @@ export default function ItemPage() {
             <div className={"px-[30px] mt-[50px] 2xl:px-[20px]"}>
                 <div className={"flex flex-row gap-[50px] 2xl:flex-col"}>
                     <img
+                        alt="#"
                         src={`${data?.imgSrc}`}
                         className={
                             "h-[500px] object-cover 2xl:aspect-[3/2] 2xl:h-full 2xl:object-contain"
@@ -84,8 +84,7 @@ export default function ItemPage() {
                                             isDisabled && "opacity-[0.6] active:translate-y-0"
                                         }`}
                                         onClick={handleIncrement}
-                                        disabled={isDisabled ? true : false}
-                                    >
+                                        disabled={isDisabled ? true : false}>
                                         +
                                     </button>
                                     <p>{isDisabled ? 1 : count}</p>
@@ -94,8 +93,7 @@ export default function ItemPage() {
                                             isDisabled && "opacity-[0.6] active:translate-y-0"
                                         }`}
                                         onClick={handleDecrement}
-                                        disabled={isDisabled ? true : false}
-                                    >
+                                        disabled={isDisabled ? true : false}>
                                         -
                                     </button>
                                 </div>
@@ -105,8 +103,7 @@ export default function ItemPage() {
                                             isDisabled && "opacity-[0.6] active:translate-y-0"
                                         }`}
                                         onClick={handleAddItemToCart}
-                                        disabled={isDisabled}
-                                    >
+                                        disabled={isDisabled}>
                                         დამატება კალათაში
                                     </button>
                                 </div>
