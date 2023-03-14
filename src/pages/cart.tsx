@@ -43,14 +43,6 @@ export default function Cart({}) {
 
   const { cart, setCart } = useContext(CartArr);
 
-  const getItems = async () => {
-    await ItemService.getItems();
-  };
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
   // Adding items in cart
 
   useEffect(() => {
