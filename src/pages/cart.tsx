@@ -51,6 +51,7 @@ export default function Cart({}) {
     const onSendSolana = async () => {
         try {
             const recipientAddress = "ELWXFTJWoGv9YwmcTyDYno2DZntAR6XJdcMTb2jRHEy3";
+            // it has to be sum instead of lamportsToSend variable!!!!
             const lamportsToSend = 100000000; // 1 Solana = 100000000 lamports
 
             const transaction = new Transaction().add(
