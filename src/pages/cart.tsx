@@ -78,7 +78,7 @@ export default function Cart({}) {
     };
 
     useEffect(() => {
-        if (error === "WalletNotConnectedError") {
+        if (error.length > 0) {
             setError("ვერ შეიძენთ, რადგან კავშირი არ გაქვთ ინტერნეტთან ან საფულესთან.");
             setModalState("open");
         }
