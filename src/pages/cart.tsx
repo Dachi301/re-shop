@@ -74,11 +74,12 @@ export default function Cart({}) {
             console.log("Transaction sent:", signature);
         } catch (error) {
             setError(`${error}`);
+            console.log(error);
         }
     };
 
     useEffect(() => {
-        if (error.length > 0) {
+        if (error === "WalletNotConnectedError" || error === "WalletNotSelectedError") {
             setError("ვერ შეიძენთ, რადგან კავშირი არ გაქვთ ინტერნეტთან ან საფულესთან.");
             setModalState("open");
         }
