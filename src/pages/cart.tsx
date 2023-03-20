@@ -25,7 +25,7 @@ export default function Cart({}) {
     useEffect(() => {
         const nums: Array<number> = [];
 
-        cart.forEach((item: any) => {
+        cart.forEach((item: object = {}) => {
             nums.push(item.price);
         });
 

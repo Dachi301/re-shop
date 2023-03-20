@@ -8,7 +8,7 @@ export default function ItemPage() {
     const router = useRouter();
     const { item } = router.query;
 
-    const data = Items.find((elem: any) => elem.id === Number(item));
+    const data = Items.find((elem: object = {}) => elem.id === Number(item));
 
     const [count, setCount] = useState(1);
     const [itemPrice, setItemPrice] = useState(data?.price);
@@ -54,7 +54,7 @@ export default function ItemPage() {
     };
 
     useEffect(() => {
-        cart.forEach((element: any) => {
+        cart.forEach((element: object = {}) => {
             if (element.id === data?.id) {
                 setIsDisabled(true);
             }
