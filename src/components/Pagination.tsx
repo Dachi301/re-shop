@@ -14,17 +14,19 @@ const Pagination = ({
         pageNumbers.push(i);
     }
     return (
-        <nav>
-            <ul>
+        <nav className={" flex justify-center"}>
+            <ul className={"flex gap-5"}>
                 {pageNumbers.map(number => (
                     <li key={number}>
-                        <a
+                        <button
+                            className={"bg-[gray] px-[10px] py-[3px] rounded-[50%] text-[#FFF]"}
                             onClick={() => {
                                 paginate(number);
                             }}
-                            href="#">
+                            // href="#">
+                        >
                             {number}
-                        </a>
+                        </button>
                     </li>
                 ))}
             </ul>

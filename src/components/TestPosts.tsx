@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
-import React from "react";
+import React, { Key } from "react";
+import Card from "./card";
 
 const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
     return (
@@ -7,9 +8,15 @@ const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
             {loading ? (
                 <h1>loading...</h1>
             ) : (
-                <div>
+                <div
+                    className={
+                        "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px] 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1"
+                    }>
                     {posts.map(
                         (post: {
+                            imgSrc: string;
+                            price: number;
+                            id: Key | null | undefined;
                             title:
                                 | string
                                 | number
@@ -20,7 +27,14 @@ const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
                                 | null
                                 | undefined;
                         }) => (
-                            <h1 key={Math.random()}>{post.title}</h1>
+                            // <h1 key={Math.random()}>{post.title}</h1>
+                            <Card
+                                key={post.id}
+                                title={post?.title}
+                                price={post?.price}
+                                imgSrc={post?.imgSrc}
+                                id={post?.id}
+                            />
                         )
                     )}
                 </div>
