@@ -29,6 +29,7 @@ const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
                         }) => (
                             // <h1 key={Math.random()}>{post.title}</h1>
                             <Card
+                                string
                                 key={post.id}
                                 title={post?.title}
                                 price={post?.price}
@@ -42,5 +43,5 @@ const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
         </div>
     );
 };
-
+~
 export default Posts;

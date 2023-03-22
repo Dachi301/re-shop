@@ -10,7 +10,7 @@ const PractisePage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(4);
 
-    const paginate = pageNumber => {
+    const paginate = (pageNumber: React.SetStateAction<number>) => {
         setCurrentPage(pageNumber);
     };
 

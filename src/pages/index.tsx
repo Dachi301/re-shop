@@ -46,26 +46,28 @@ export default function Home() {
                         onInput={e => setSearchValue(e.currentTarget.value)}
                     />
                 </div>
-                {/* <div
-          className={
-            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px] 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1"
-          }
-        >
-          {filterProducts().length === 0 ? (
-            <h1 className="text-[red] text-[28px]">There is no products!</h1>
-          ) : (
-            filterProducts().map((product) => (
-              <Card
-                key={product.id}
-                title={product?.title}
-                price={product?.price}
-                imgSrc={product?.imgSrc}
-                id={product?.id}
-              />
-            ))
-          )}
-        </div> */}
-                <PractisePage />
+                {searchValue.length === 0 ? (
+                    <PractisePage />
+                ) : (
+                    <div
+                        className={
+                            "grid w-full grid-cols-4 gap-x-[30px] gap-y-[30px] px-[30px] mb-[50px] 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1"
+                        }>
+                        {filterProducts().length === 0 ? (
+                            <h1 className="text-[red] text-[28px]">There is no products!</h1>
+                        ) : (
+                            filterProducts().map(product => (
+                                <Card
+                                    key={product.id}
+                                    title={product?.title}
+                                    price={product?.price}
+                                    imgSrc={product?.imgSrc}
+                                    id={product?.id}
+                                />
+                            ))
+                        )}
+                    </div>
+                )}
             </main>
         </>
     );
