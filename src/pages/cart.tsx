@@ -18,6 +18,7 @@ export default function Cart({}) {
     const [error, setError] = useState("");
     const [modalState, setModalState] = useState("closed");
 
+    // @ts-ignore
     const { cart, setCart } = useContext(CartArr);
 
     // Adding items in cart
@@ -25,7 +26,7 @@ export default function Cart({}) {
     useEffect(() => {
         const nums: Array<number> = [];
 
-        cart.forEach((item: object = {}) => {
+        cart.forEach((item: any) => {
             nums.push(item.price);
         });
 
@@ -54,14 +55,13 @@ export default function Cart({}) {
     const onSendSolana = async () => {
         try {
             const recipientAddress = "ELWXFTJWoGv9YwmcTyDYno2DZntAR6XJdcMTb2jRHEy3";
-            // it has to be sum instead of lamportsToSend variable!!!!
-            const lamportsToSend = 100000000; // 1 Solana = 100000000 lamports
+            const sum = 100000000; // Replace with the desired amount of lamports
 
             const transaction = new Transaction().add(
                 SystemProgram.transfer({
-                    fromPubkey: publicKey,
+                    fromPubkey: publicKey!,
                     toPubkey: new PublicKey(recipientAddress),
-                    lamports: lamportsToSend
+                    lamports: sum
                 })
             );
 
@@ -69,7 +69,7 @@ export default function Cart({}) {
                 commitment: "confirmed"
             };
 
-            const signature = await sendTransaction(transaction, connection, options);
+            const signature = await sendTransaction(transaction, connection, options as any);
 
             console.log("Transaction sent:", signature);
         } catch (error) {
@@ -77,6 +77,7 @@ export default function Cart({}) {
             console.log(error);
         }
     };
+
 
     useEffect(() => {
         if (
