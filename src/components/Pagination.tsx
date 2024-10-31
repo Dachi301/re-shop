@@ -7,7 +7,7 @@ const Pagination = ({
 }: {
     postsPerPage: number;
     totalPosts: number;
-    paginate: (a: number) => {};
+    paginate: any;
 }) => {
     const pageNumbers: number[] = [];
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -30,7 +30,7 @@ const Pagination = ({
                             className={`px-[10px] py-[3px] rounded-[50%] text-black hover:bg-[#e7c128] ${
                                 active === Number(id) ? "bg-[#e7c128]" : "bg-[gray]"
                             }`}
-                            onClick={e => {
+                            onClick={(e: any) => {
                                 paginate(number);
 
                                 setActive(Number(e.target.id));

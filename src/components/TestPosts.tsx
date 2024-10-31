@@ -2,7 +2,7 @@
 import React, { Key } from "react";
 import Card from "./card";
 
-const Posts = ({ posts, loading }: { posts: []; loading: boolean }) => {
+const Posts = ({ posts, loading }: { posts: any; loading: any }) => {
     return (
         <div>
             {loading ? (

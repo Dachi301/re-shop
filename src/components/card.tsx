@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface PropsTypes {
-    title: string;
+    title: any;
     price: number;
     imgSrc: string;
-    id: number;
+    id: any;
 }
 
 export default function Card({ title, price, imgSrc, id }: PropsTypes) {

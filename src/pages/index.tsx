@@ -23,6 +23,8 @@ export default function Home() {
         await ItemService.getItems();
     };
 
+    console.log("filterproducts: ", filterProducts());
+
     useEffect(() => {
         getItems();
     }, []);
@@ -65,7 +67,7 @@ export default function Home() {
             ))
           )}
         </div> */}
-                <PractisePage />
+                <PractisePage searchValue={searchValue} filteredData={filterProducts()} />
             </main>
         </>
     );
